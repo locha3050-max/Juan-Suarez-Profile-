@@ -120,10 +120,10 @@
 <div class="headline">Clinical Research &amp; Operations | Regulatory Affairs | MedTech &amp; Global Program Management</div>
 <div class="meta"><span>El Paso, TX</span><span>U.S. Citizen</span><span>Bilingual English / Spanish</span></div>
 <div class="actions">
-<a aria-label="Download Medical Device and MedTech résumé in PDF" class="btn btn-primary" download="" href="./resume_medical_device.pdf">Medical Device Résumé (PDF)</a><a aria-label="Download Clinical Research résumé in PDF" class="btn btn-secondary" download="" href="./resume_clinical_research.pdf">Clinical Research Résumé (PDF)</a>
+<a aria-label="Download Medical Device and MedTech résumé in PDF" class="btn btn-primary" download="" href="./resume_medical_device.pdf">Medical Device Résumé (PDF)</a><a aria-label="Download Clinical Research résumé in PDF" class="btn btn-secondary" download="" href="./resume_clinical_research.pdf">Clinical Research Résumé (PDF)</a><a aria-label="Download general professional résumé in PDF" class="btn btn-secondary" download="" href="./resume.pdf">General Résumé (PDF)</a>
 <a class="btn btn-secondary" href="https://www.linkedin.com/in/juan-suarez-d-h-sc-c-058076186/" target="_blank">LinkedIn</a>
 <a class="btn btn-secondary" href="mailto:suarezjuancarlos@hotmail.com">Email</a>
-<a class="btn btn-secondary" href="tel:+19144830772">Call</a>
+<button class="btn btn-secondary" onclick="showPhoneNumber()" type="button">Call</button>
 </div>
 </div>
 </div>
@@ -222,10 +222,10 @@
 </section>
 <section class="section contact-panel reveal" id="contact">
 <div><h2>Connect on Clinical Research, Regulatory Affairs &amp; MedTech Opportunities</h2><p>Clinical Research Operations • CRO Programs • Regulatory Affairs • Quality Systems • Global Program Management</p></div>
-<div class="contact-actions">
-<a aria-label="Download Medical Device and MedTech résumé in PDF" class="btn btn-primary" download="" href="./resume_medical_device.pdf">Medical Device Résumé (PDF)</a><a aria-label="Download Clinical Research résumé in PDF" class="btn btn-secondary" download="" href="./resume_clinical_research.pdf">Clinical Research Résumé (PDF)</a>
+<div class="contact-actions"><div style="flex-basis:100%;font-weight:700;margin-bottom:6px;">Choose a résumé to download:</div>
+<a aria-label="Download Medical Device and MedTech résumé in PDF" class="btn btn-primary" download="" href="./resume_medical_device.pdf">Medical Device Résumé (PDF)</a><a aria-label="Download Clinical Research résumé in PDF" class="btn btn-secondary" download="" href="./resume_clinical_research.pdf">Clinical Research Résumé (PDF)</a><a aria-label="Download general professional résumé in PDF" class="btn btn-secondary" download="" href="./resume.pdf">General Résumé (PDF)</a>
 <a class="btn btn-secondary" href="mailto:suarezjuancarlos@hotmail.com">Email Juan</a>
-<a class="btn btn-secondary" href="tel:+19144830772">Call Juan</a>
+<button class="btn btn-secondary" onclick="showPhoneNumber()" type="button">Call Juan</button>
 </div>
 </section>
 <div class="footer">Juan C. Suárez • El Paso, Texas • U.S. Citizen • Bilingual English / Spanish</div>
@@ -283,5 +283,23 @@
 
     document.querySelectorAll('.counter, .money-counter').forEach(el => metricObserver.observe(el));
   </script>
+<div aria-labelledby="phone-popup-title" aria-modal="true" hidden="" id="phone-popup" role="dialog" style="position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9999;align-items:center;justify-content:center;padding:20px;">
+<div style="background:#fff;color:#172333;border-radius:16px;padding:28px;max-width:390px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center;">
+<h2 id="phone-popup-title" style="color:#172333;margin:0 0 12px;">Contact Juan</h2>
+<p style="margin:0 0 15px;">Phone number</p>
+<input aria-label="Phone number" id="phone-number" readonly="" style="box-sizing:border-box;width:100%;text-align:center;font-size:1.35rem;font-weight:700;padding:10px;border:1px solid #aab6c2;border-radius:8px;margin-bottom:16px;color:#172333;background:#fff;" type="text" value="914-483-0772"/>
+<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+<button class="btn btn-primary" onclick="copyPhoneNumber()" type="button">Copy number</button>
+<button class="btn btn-secondary" onclick="hidePhoneNumber()" style="color:#172333;border:1px solid #aab6c2;" type="button">Close</button>
+</div>
+<p aria-live="polite" id="phone-copy-status" role="status" style="margin:12px 0 0;font-size:.9rem;"></p>
+</div>
+</div>
+<script>
+function showPhoneNumber(){const p=document.getElementById('phone-popup');p.hidden=false;p.style.display='flex';document.getElementById('phone-copy-status').textContent='';document.getElementById('phone-number').focus();}
+function hidePhoneNumber(){const p=document.getElementById('phone-popup');p.hidden=true;p.style.display='none';}
+async function copyPhoneNumber(){const field=document.getElementById('phone-number');const status=document.getElementById('phone-copy-status');try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(field.value);}else{field.select();if(!document.execCommand('copy'))throw Error('copy unavailable');}status.textContent='Number copied!';}catch(e){field.select();status.textContent='Select the number and press Command+C to copy.';}}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')hidePhoneNumber();});
+</script>
 </body>
 </html>
